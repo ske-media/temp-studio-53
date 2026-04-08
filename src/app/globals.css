@@ -98,6 +98,93 @@ body {
   border: 1px solid var(--border-subtle);
 }
 
+/* Carte formulaire — halo néon discret, bordure vivante */
+.spotlight-card {
+  position: relative;
+  border-radius: 1rem;
+  background: rgba(22, 22, 24, 0.55);
+  border: 1px solid rgba(204, 255, 0, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 0 1px rgba(244, 244, 241, 0.04) inset,
+    0 24px 80px rgba(0, 0, 0, 0.45),
+    0 0 60px rgba(204, 255, 0, 0.06);
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(204, 255, 0, 0.25),
+    rgba(244, 244, 241, 0.06) 40%,
+    rgba(204, 255, 0, 0.15) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spotlight-card::before {
+    animation: border-shimmer 8s ease-in-out infinite;
+  }
+}
+
+@keyframes border-shimmer {
+  0%,
+  100% {
+    opacity: 0.45;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 0.85;
+    filter: hue-rotate(12deg);
+  }
+}
+
+/* Micro-glitch périodique sur le headline — sensation “signal / rupture” */
+@media (prefers-reduced-motion: no-preference) {
+  .disruptive-headline-glitch {
+    animation: disruptive-headline-cycle 8s ease-in-out infinite;
+  }
+}
+
+@keyframes disruptive-headline-cycle {
+  0%,
+  88%,
+  100% {
+    transform: translate3d(0, 0, 0) skewX(0deg);
+    filter: none;
+  }
+  89% {
+    transform: translate3d(-4px, 1px, 0) skewX(-2deg);
+    filter: contrast(1.2) saturate(1.15);
+  }
+  90% {
+    transform: translate3d(5px, -2px, 0) skewX(2.5deg);
+    filter: contrast(1.35);
+  }
+  91% {
+    transform: translate3d(-3px, 1px, 0);
+  }
+  92% {
+    transform: translate3d(0, 0, 0) skewX(0deg);
+    filter: none;
+  }
+}
+
 .btn-horizon-glow {
   transition:
     box-shadow 0.35s ease,

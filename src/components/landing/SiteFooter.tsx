@@ -1,6 +1,12 @@
-export function SiteFooter() {
+type SiteFooterProps = {
+  className?: string;
+};
+
+export function SiteFooter({ className = "" }: SiteFooterProps) {
   return (
-    <footer className="relative z-20 border-t border-paper/10 px-5 py-10 sm:px-8 lg:px-12">
+    <footer
+      className={`relative z-20 border-t border-paper/10 px-5 py-10 sm:px-8 lg:px-12 ${className}`}
+    >
       <p className="text-center text-[11px] tracking-[0.35em] text-paper/45">
         Genève 2026
       </p>
