@@ -116,3 +116,11 @@ body {
     box-shadow: none;
   }
 }
+
+/* Page succès — lueur typographique acid (très subtile) */
+.success-copy h1,
+.success-copy p {
+  text-shadow:
+    0 0 24px rgba(204, 255, 0, 0.07),
+    0 0 48px rgba(204, 255, 0, 0.035);
+}

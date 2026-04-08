@@ -1,13 +1,15 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const FORM_NAME = "coming-soon-leads";
 
 export function LeadForm() {
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "error">("idle");
   const reduce = useReducedMotion();
+  const router = useRouter();
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,8 +32,8 @@ export function LeadForm() {
       });
 
       if (res.ok) {
-        setStatus("success");
         form.reset();
+        router.push("/success");
       } else {
         setStatus("error");
       }
@@ -47,7 +49,7 @@ export function LeadForm() {
         method="POST"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        action="/"
+        action="/success"
         onSubmit={handleSubmit}
         className="flex flex-col gap-6"
       >
@@ -82,35 +84,17 @@ export function LeadForm() {
         </button>
       </form>
 
-      <AnimatePresence mode="wait">
-        {status === "success" && (
-          <motion.div
-            key="success"
-            role="status"
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0 }}
-            exit={reduce ? undefined : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 border border-acid/25 bg-acid/5 px-4 py-3 text-sm text-paper/95"
-          >
-            Merci — vous êtes sur la liste. Nous vous contacterons depuis
-            Genève.
-          </motion.div>
-        )}
-        {status === "error" && (
-          <motion.p
-            key="error"
-            role="alert"
-            initial={reduce ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="mt-4 text-sm text-red-300/90"
-          >
-            Envoi impossible pour le moment. Réessayez ou contactez-nous
-            directement.
-          </motion.p>
-        )}
-      </AnimatePresence>
+      {status === "error" && (
+        <motion.p
+          role="alert"
+          initial={reduce ? false : { opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-4 text-sm text-red-300/90"
+        >
+          Envoi impossible pour le moment. Réessayez ou contactez-nous
+          directement.
+        </motion.p>
+      )}
     </div>
   );
 }
