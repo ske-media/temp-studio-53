@@ -3,18 +3,40 @@ import { AcidEntryFlash } from "@/components/success/AcidEntryFlash";
 import { DigitalDust } from "@/components/success/DigitalDust";
 import { NeonPulseHeart } from "@/components/success/NeonPulseHeart";
 import { SuccessContent } from "@/components/success/SuccessContent";
+import { getSiteUrl } from "@/lib/site-config";
+
+const base = getSiteUrl();
 
 export const metadata: Metadata = {
-  title: "Bienvenue dans l'horizon",
+  title: "Confirmation d'inscription",
   description:
-    "Confirmation d'inscription Studio 53 — page réservée aux inscrits.",
+    "Votre inscription à la liste d'accès anticipé Studio 53 est confirmée. Page technique, non indexée.",
   robots: {
     index: false,
     follow: false,
+    nocache: true,
     googleBot: {
       index: false,
       follow: false,
+      noimageindex: true,
+      nosnippet: true,
     },
+  },
+  alternates: {
+    canonical: `${base}/success`,
+  },
+  openGraph: {
+    title: "Inscription confirmée | Studio 53",
+    description: "Merci — votre place est réservée.",
+    url: `${base}/success`,
+    siteName: "Studio 53",
+    locale: "fr_CH",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Studio 53 — Inscription confirmée",
+    description: "Merci pour votre inscription.",
   },
 };
 

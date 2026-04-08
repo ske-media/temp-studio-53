@@ -1,0 +1,9 @@
+/* TEAM */
+Studio 53 — production publicitaire & vidéo (Genève, CH)
+
+/* SITE */
+Stack: Next.js, déployé sur Netlify.
+Langue principale: fr-CH.
+
+/* CONTACT */
+Site: https://studio53.ch

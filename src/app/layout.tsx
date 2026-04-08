@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Syne } from "next/font/google";
 import "./globals.css";
 import { FilmGrain } from "@/components/landing/FilmGrain";
+import { OrganizationWebSiteJsonLd } from "@/components/seo/OrganizationWebSiteJsonLd";
+import { rootMetadata } from "@/lib/metadata-defaults";
 
 const titleFont = Syne({
   variable: "--font-title",
@@ -15,39 +17,16 @@ const bodyFont = DM_Sans({
   weight: ["400", "500", "600"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Studio 53 | Production Vidéo IA Genève — Bientôt",
-    template: "%s | Studio 53",
-  },
-  description:
-    "Studio 53 — agence de production publicitaire augmentée par l'IA à Genève. Production vidéo irréprochable, sans délais ni coûts traditionnels. Inscrivez-vous pour rejoindre l'horizon.",
-  keywords: [
-    "Studio 53",
-    "Production Vidéo IA Genève",
-    "publicité Genève",
-    "agence créative Genève",
-    "production publicitaire Suisse Romande",
-    "IA créative",
+export const metadata: Metadata = rootMetadata;
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1a1a1c" },
+    { media: "(prefers-color-scheme: dark)", color: "#1a1a1c" },
   ],
-  authors: [{ name: "Studio 53" }],
-  openGraph: {
-    title: "Studio 53 — Production Vidéo IA Genève",
-    description:
-      "Advertising, generated. Production publicitaire de luxe, amplifiée par l'intelligence artificielle — Genève.",
-    locale: "fr_CH",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Studio 53 | Genève",
-    description:
-      "Production Vidéo IA Genève — disruptive by nature. Bientôt disponible.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
@@ -61,6 +40,7 @@ export default function RootLayout({
       className={`${titleFont.variable} ${bodyFont.variable} h-full antialiased`}
     >
       <body className="relative min-h-full overflow-x-hidden">
+        <OrganizationWebSiteJsonLd />
         {children}
         <FilmGrain />
       </body>
