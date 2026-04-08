@@ -25,7 +25,7 @@ export function LeadForm() {
     }
 
     try {
-      const res = await fetch("/", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: params.toString(),
@@ -47,9 +47,7 @@ export function LeadForm() {
       <form
         name={FORM_NAME}
         method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        action="/success"
+        action="/__forms.html"
         onSubmit={handleSubmit}
         className="flex flex-col gap-6"
       >

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr-CH">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify Forms — Studio 53</title>
+  </head>
+  <body>
+    <!--
+      Fichier statique requis par @netlify/plugin-nextjs v5 pour enregistrer
+      les champs Netlify Forms (voir https://opennext.js.org/netlify/forms).
+      Les soumissions réelles partent depuis l’app via POST vers /__forms.html.
+    -->
+    <form
+      name="coming-soon-leads"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="coming-soon-leads" />
+      <p style="display: none">
+        <label>Ne pas remplir : <input name="bot-field" type="text" /></label>
+      </p>
+      <input name="email" type="email" />
+    </form>
+    <p style="font-family: system-ui; padding: 1rem; color: #666">
+      <a href="/" style="color: #1a1a1c">← Studio 53</a>
+    </p>
+  </body>
+</html>
